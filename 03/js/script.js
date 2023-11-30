@@ -96,3 +96,8 @@
     video.setAttribute('src', `https://www.youtube.com/embed/${arr[1]}`);
     
 }
+
+
+while(1>0){
+    console.log("Denis");
+}
