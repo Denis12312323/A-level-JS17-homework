@@ -72,21 +72,9 @@
 
 //Number: flats
 
-let apartments = parseInt(prompt("Номер вашей квартиры?"));
+const targetApartment = Number(prompt("Введіть номер квартири:"));
 
-let entrance = apartments % 36 / 4;
+let entranceNumber = Math.ceil(targetApartment / (4 * 9));
+let floorNumber = Math.ceil((targetApartment % 36) / 4);
 
-
-if (apartments <= 36) {
-    alert('Квартира находится в первом подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-} else if (apartments > 36 && apartments <= 72) {
-    alert('Квартира находится в втором подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-} else if (apartments > 72 && apartments <= 108) {
-    alert('Квартира находится в третьем подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-} else if (apartments > 108 && apartments <= 144) {
-    alert('Квартира находится в четвертом подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-} else if (apartments > 144 && apartments <= 180) {
-    alert('Квартира находится в пятом подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-} else {
-    alert('Квартира находится в шестом подъезде.' + ' На ' + Math.ceil(entrance) + ' этаже');
-}
+console.log(`Під'їзд: ${entranceNumber} Поверх: ${floorNumber}`);

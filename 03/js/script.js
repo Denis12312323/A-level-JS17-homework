@@ -91,13 +91,9 @@
 
     console.log(arr, arr[1]);
 
-    let video = document.querySelector("#video");
+    let video = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${arr[1]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 
-    video.setAttribute('src', `https://www.youtube.com/embed/${arr[1]}`);
+    document.write(video);
     
 }
 
-
-while(1>0){
-    console.log("Denis");
-}
