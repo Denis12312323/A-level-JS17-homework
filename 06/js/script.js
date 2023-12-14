@@ -373,45 +373,162 @@ const { 10: item, length } = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     console.log(copyObj);
 
 }
+//Currency real rate
+{
+    fetch('https://open.er-api.com/v6/latest/USD').then(res => res.json())
+        .then(data => {
+            let input = prompt('Введіть вхідну валюту (наприклад, USD)');
+            if (input === "" || input === null) {
+                alert('Ви ввели некоректні данні');
+            } else {
+                input = input.toUpperCase();
 
-let user = {
-    name: 'Denys',
-    age: 21,
-    showInfo() {
-        console.log(`${this.name} крутой мужик`);
-    }
+                let output = prompt('Введіть вхідну, валюту, в яку відбувається конвертація (наприклад, EUR)');
+                if (output === '' || output === null) {
+                    alert('Ви ввели некоректні данні');
+                } else {
+                    output = output.toUpperCase();
+
+                    let inputMoney = JSON.parse(prompt('Введіть суму у вхідній валюті'));
+
+                    let inputExchangeRate = data.rates[input];
+                    let outputExchangeRate = data.rates[output];
+                    console.log(inputExchangeRate);
+                    console.log(outputExchangeRate);
+
+                    const res = inputMoney * outputExchangeRate;
+
+                    console.log(`${inputMoney} ${input} = ${res.toFixed(2)} ${output}`);
+                    console.log(data) // Вивчіть структуру, що отримується з сервера в консолі
+                }
+
+            }
+        })
 }
+// Currency drop down
+{
+    fetch('https://open.er-api.com/v6/latest/USD').then(res => res.json())
+        .then(data => {
+            console.log(data)
 
-user.showInfo();
+            let str = "<select>"
 
-
-const arr = new Array(100).fill(0).map((e, i) => i);
-
-console.log(arr);
-
-const doReduce = (arr) => {
-    var j = 0;
-    var res = 0;
-
-    for (j = 0; j < 10000000; j++) {
-        res = res + arr.reduce((p, c) => (p + c));
-
-    }
-
-    return res;
+            for (const key in data.rates) {
+                str += `<option >${key}</option>`;
+            }
+            str += "</select>"
+            document.write(str)
+        })
 }
-
-doReduce(arr);
-
+//Currency table
 
 {
-    const obj = {
-        a: 50,
-        b: 100,
-        c: 150,
+    fetch('https://open.er-api.com/v6/latest/USD').then(res => res.json())
+        .then(data => {
+            console.log(data)
+
+            let str = ` <table border="1">`
+            str += '<tr>';
+            for (const num of Object.keys(data.rates)) {
+                str += `<td>${num}</td>`;
+            }
+            str += '</tr>';
+            str += '<tr>';
+            for (const iterator of Object.keys(data.rates)) {
+                str += `<tr><td><b>${iterator}</b></td>`;
+                for (const toCurrency of Object.keys(data.rates)) {
+                    const exchangeRate = data.rates[toCurrency] / data.rates[iterator];
+                    str += `<td>${exchangeRate.toFixed(2)}</td>`;
+                }
+            }
+            str += '</tr>';
+            str += "</table>";
+            document.write(str)
+        })
+
+}
+
+//Form
+
+{
+    const car = {
+        "Name": "chevrolet chevelle malibu",
+        "Cylinders": 8,
+        "Displacement": 307,
+        "Horsepower": 130,
+        "Weight_in_lbs": 3504,
+        "Origin": "USA",
+        "in_production": false
+    };
+
+    let form = `<form >`;
+
+    for (const key in car) {
+        form += `<label style = 'display:block;'>${key}<input value="${car[key]}" type = ${typeof car[key] === 'number' ? 'number' : (typeof car[key] === 'boolean' ? 'checkbox' : 'text')}></label>`
+
     }
 
-    for (const pair of Object.entries(obj)) {
-        console.log(item[1]);
+    form += `</form >`;
+
+    document.write(form);
+}
+
+//Table
+{
+    const persons = [
+        {
+            name: 'Марія',
+            fatherName: 'Іванівна',
+            surname: 'Іванова',
+            sex: 'female'
+        },
+        {
+            name: 'Миколай',
+            fatherName: 'Іванович',
+            surname: 'Іванов',
+            age: 15
+        },
+        {
+            name: 'Петро',
+            fatherName: 'Іванович',
+            surname: 'Іванов',
+            married: true
+        },
+    ]
+
+    let arr = [];
+    for (const item of persons) {
+        for (const key of Object.keys(item)) {
+            arr.push(key);
+            console.log(arr);
+        }
     }
+    const copy = arr.filter((value, index, self) => self.indexOf(value) === index)
+    console.log(copy);
+
+    let str = `<table border="1">`;
+    str += '<tr>';
+    for (const iterator of copy) {
+        str += `<td><b>${iterator}</b></td>`;
+    }
+    str += '</tr>';
+
+
+
+
+
+
+
+
+
+    for (const person of persons) {
+        str += '</tr>';
+        for (const iterator of copy) {
+            str += `<td>${person[iterator] === undefined ? person[iterator] = '' : person[iterator]}</td>`;
+        }
+    }
+
+    // Закриваємо таблицю
+    str += `</table>`;
+    document.write(str);
 }
