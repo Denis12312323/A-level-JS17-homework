@@ -519,3 +519,20 @@ let room = confirm('Ти прибрав у кімнаті?');
         console.log('Ви перемогли!!!');
     }
 }
+
+
+// Завдання на чорний пояс
+
+{
+    let string = prompt("Ваш хід, введіть камінь або ножиці або папір");
+
+    let bot = Math.random();
+
+
+    let computer;
+
+    bot < 0.33 ? (computer = 'камінь') :  ((bot > 0.33 && bot < 0.66) ? computer = 'ножиці' : computer = 'папір');
+    console.log(computer);
+    computer === string ? console.log('Нічия') : ((computer === 'камінь' && string === 'ножиці') || (computer === 'ножиці' && string === 'папір') || (computer === 'папір' && string === 'камінь')) ? console.log('Комп\'ютер переміг') : console.log('Ви перемогли!!!');
+
+}
