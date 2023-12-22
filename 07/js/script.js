@@ -46,20 +46,6 @@
 }
 
 //Prompt OR
-
-{
-    let age = prompt('Скільки вам років?');
-
-    if (age === "" || age === null) {
-        alert('Ви ввели некоректні данні');
-    } else {
-        let year = 2023 - age;
-        console.log(year);
-    };
-
-    age === "" || age === null ? alert('Ви ввели некоректні данні') : console.log(2023 - age);
-}
-//Prompt OR
 {
     let str = (age, year = 2023) => age === '' || age === null ? alert('Ви ввели некоректні данні') : console.log(year - age);
     console.log(str(prompt('Скільки вам років?')));
@@ -157,7 +143,7 @@
                         str += `</tr>`
                     }
                     str += "</table>";
-                    return document.write(str);
+                    document.write(str);
 
                 }
                 table(arr);
@@ -251,14 +237,16 @@
 
             if (typeof a[sortBy] === 'string' && typeof b[sortBy] === 'string') {
                 return sortOrder === 'asc' ? (a[sortBy] < b[sortBy] ? -1 : a[sortBy] > b[sortBy] ? 1 : 0) : (b[sortBy] < a[sortBy] ? -1 : b[sortBy] > a[sortBy] ? 1 : 0);
-            } else if (typeof aValue === 'number' && typeof bValue === 'number') {
-                return sortOrder === 'asc' ? aValue - bValue : bValue - aValue;
+            } else if (typeof a[sortBy] === 'number' && typeof b[sortBy] === 'number') {
+                return sortOrder === 'asc' ? a[sortBy] - b[sortBy] : b[sortBy] - a[sortBy];
             } else {
                 return 0;
             }
         });
 
         const headers = copy.reduce((acc, item) => acc.concat(Object.keys(item)), []).filter((value, index, self) => self.indexOf(value) === index);
+
+        console.log(headers);
 
 
 
