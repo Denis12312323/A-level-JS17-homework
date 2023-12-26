@@ -41,8 +41,14 @@
 }
 //New line
 {
-    let line = (str) => str.split(" ").join('\n');
-    console.log(line(prompt("Введите любое предложение")));
+    let line = (str) => {
+        let lines = str.split("\\n");
+        let multiLineString = lines.join('\n');
+        return multiLineString;
+    }
+    let userInput = prompt("Введіть рядок (використовуйте \\n для нового рядка):");
+    let result = line(userInput);
+    console.log(result);
 }
 
 //Prompt OR
