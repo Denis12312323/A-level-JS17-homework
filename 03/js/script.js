@@ -56,10 +56,6 @@
 // String: no tag
 {
     let str = "якийсь текст, в якому є один тег <br /> і всяке інше";
-
-    let start = str.indexOf("<");
-    let end = str.indexOf(">");
-    console.log(start, end);
     console.log(str.slice(0, 33) + str.slice(39));
 }
 
@@ -67,17 +63,14 @@
 {
     let str = "якийсь текст, в якому є один тег <br /> і всяке інше";
 
-    let start = str.indexOf("<");
-    let end = str.indexOf(">");
-    console.log(start, end);
     console.log(str.slice(0, 33) + str.slice(33, 39).toUpperCase() + str.slice(39));
 }
 
 // String: new line
 {
-    let str = prompt("Введите любое предложение");
+    let str = prompt("Введіть рядок (використовуйте \\n для нового рядка):");
 
-    let arr = str.split(" ");
+    let arr = str.split("\\n");
 
     console.log(arr.join("\n"));
 }
